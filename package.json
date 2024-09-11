@@ -4,17 +4,18 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "react-build": "cd app && npm run build",  
-    "start": "npm run react-build && electron .",  
+    "react-build": "cd app && npm run build",
+    "start": "npm run react-build && electron .",
     "dev": "nodemon --exec electron .  ",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "react-start": "cd app && npm start" 
+    "react-start": "cd app && npm start"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "electron": "^32.0.2"
+    "electron": "^32.0.2",
+    "react-router-dom": "^6.26.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.4"
