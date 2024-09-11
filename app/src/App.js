@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import TodoForm from './pages/forms/AddTask';
+import ImageUploader from './pages/image_upload/ImageUploader';
 function App() {
   return (
     <Router>
@@ -19,6 +20,9 @@ function App() {
             <li>
               <Link to="/addTask">Add Task</Link>
             </li>
+            <li>
+              <Link to="/imageUpload">Add Image</Link>
+            </li>
           </ul>
         </nav>
 
@@ -27,6 +31,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/addTask" element={<TodoForm />} />
+          <Route path="/imageUpload" element={<ImageUploader />} />
         </Routes>
       </div>
     </Router>

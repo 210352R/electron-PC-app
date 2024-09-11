@@ -32,3 +32,24 @@ ipcMain.on('submit-tasks', async (e, opt) => {
   // fs.writeFileSync('todoList.txt', opt, { flag: 'a' });
   // console.log('Data written to the file');
 });
+
+// Listen for 'save-image' from renderer process
+ipcMain.on('save-image', (event, { imageData, fileName }) => {
+  // Strip off the data: URL prefix to get just the base64-encoded bytes
+  const base64Data = imageData.replace(
+    /^data:image\/(png|jpeg|jpg);base64,/,
+    ''
+  );
+
+  // Define a path to save the file
+  const savePath = path.join(app.getPath('pictures'), fileName);
+
+  // Save the image to the Pictures folder
+  fs.writeFile(savePath, base64Data, 'base64', (err) => {
+    if (err) {
+      console.error('Failed to save image', err);
+    } else {
+      console.log('Image saved successfully to', savePath);
+    }
+  });
+});
