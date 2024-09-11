@@ -2,7 +2,7 @@ const { app, BrowserWindow } = require('electron');
 const url = require('url');
 const path = require('path');
 const fs = require('fs');
-
+const { ipcMain } = require('electron/main');
 function createMainWindow() {
   const mainWindow = new BrowserWindow({
     width: 1200,
