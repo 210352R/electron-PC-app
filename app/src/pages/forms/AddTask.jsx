@@ -18,6 +18,11 @@ const TodoForm = () => {
     resetForm(); // Reset form after submission
   };
 
+  // handle submit
+  const handleSubmit = () => {
+    console.log('submitting tasks');
+  };
+
   return (
     <div>
       <h2>Add a Task</h2>
@@ -38,6 +43,9 @@ const TodoForm = () => {
           </div>
           <button type="submit">Add Task</button>
         </Form>
+        <button type="submit" onClick={handleSubmit}>
+          Submit Tasks
+        </button>
       </Formik>
 
       <h3>Todo List:</h3>
