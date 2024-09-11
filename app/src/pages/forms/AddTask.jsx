@@ -24,7 +24,7 @@ const TodoForm = () => {
     console.log('submitting tasks');
     ipcRenderer.send('submit-tasks', todos);
     console.log('tasks submitted');
-    todos = [];
+    setTodos([]); // Clear the todo list
   };
 
   return (
