@@ -8,7 +8,9 @@ function createMainWindow() {
     width: 1200,
     height: 800,
     webPreferences: {
+      contextIsolation: true,
       nodeIntegration: true,
+      preload: path.join(__dirname, 'preload.js'),
     },
   });
 
