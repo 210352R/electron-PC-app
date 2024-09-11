@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 const TodoForm = () => {
+  const ipcRenderer = window.ipcRenderer;
   const [todos, setTodos] = useState([]);
   console.log(todos);
 
@@ -21,6 +22,9 @@ const TodoForm = () => {
   // handle submit
   const handleSubmit = () => {
     console.log('submitting tasks');
+    ipcRenderer.send('submit-tasks', todos);
+    console.log('tasks submitted');
+    todos = [];
   };
 
   return (

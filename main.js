@@ -25,3 +25,10 @@ function createMainWindow() {
 }
 
 app.whenReady().then(createMainWindow);
+
+ipcMain.on('submit:todoForm', async (e, opt) => {
+  console.log('Received the following data from the renderer process:');
+  console.log(opt);
+  // fs.writeFileSync('todoList.txt', opt, { flag: 'a' });
+  // console.log('Data written to the file');
+});
