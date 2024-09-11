@@ -47,10 +47,10 @@ const TodoForm = () => {
           </div>
           <button type="submit">Add Task</button>
         </Form>
-        <button type="submit" onClick={handleSubmit}>
-          Submit Tasks
-        </button>
       </Formik>
+      <button type="submit" onClick={handleSubmit}>
+        Submit Tasks
+      </button>
 
       <h3>Todo List:</h3>
       <ul>
