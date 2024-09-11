@@ -3,6 +3,7 @@ import './App.css';
 import Home from './pages/Home';
 import About from './pages/About';
 import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import TodoForm from './pages/forms/AddTask';
 function App() {
   return (
     <Router>
@@ -15,6 +16,9 @@ function App() {
             <li>
               <Link to="/about">About</Link>
             </li>
+            <li>
+              <Link to="/addTask">Add Task</Link>
+            </li>
           </ul>
         </nav>
 
@@ -22,6 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/addTask" element={<TodoForm />} />
         </Routes>
       </div>
     </Router>
