@@ -10,6 +10,11 @@ const ImageUploader = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         setImage(reader.result);
+        // Send the file and file name to the main process for saving
+        window.ipcRenderer.send('save-image', {
+          imageData: reader.result,
+          fileName: file.name,
+        });
       };
       reader.readAsDataURL(file);
     } else {
