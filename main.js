@@ -13,9 +13,8 @@ function createMainWindow() {
   });
 
   const startUrl = url.format({
-    pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file:',
-    slashes: true,
+    pathname: path.join(__dirname, './app/build/index.html'),
+    protocol: 'file',
   });
 
   mainWindow.loadURL(startUrl); // load the index.html file into the window
