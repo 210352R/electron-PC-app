@@ -33,23 +33,35 @@ ipcMain.on('submit-tasks', async (e, opt) => {
   // console.log('Data written to the file');
 });
 
-// Listen for 'save-image' from renderer process
+// Listen for 'save-image' from the renderer process
 ipcMain.on('save-image', (event, { imageData, fileName }) => {
-  // Strip off the data: URL prefix to get just the base64-encoded bytes
-  const base64Data = imageData.replace(
-    /^data:image\/(png|jpeg|jpg);base64,/,
-    ''
-  );
-
-  // Define a path to save the file
-  const savePath = path.join(app.getPath('pictures'), fileName);
-
-  // Save the image to the Pictures folder
-  fs.writeFile(savePath, base64Data, 'base64', (err) => {
-    if (err) {
-      console.error('Failed to save image', err);
-    } else {
-      console.log('Image saved successfully to', savePath);
+  try {
+    // Check if the imageData is a valid base64 string
+    if (!/^data:image\/(png|jpeg|jpg);base64,/.test(imageData)) {
+      throw new Error(
+        'Invalid image format. Expected a base64-encoded PNG or JPEG image.'
+      );
     }
-  });
+
+    // Strip off the data: URL prefix to get just the base64-encoded bytes
+    const base64Data = imageData.replace(
+      /^data:image\/(png|jpeg|jpg);base64,/,
+      ''
+    );
+
+    // Define the path where the image will be saved
+    const savePath = path.join(app.getPath('pictures'), fileName);
+
+    // Try to save the image to the file system
+    fs.writeFile(savePath, base64Data, 'base64', (err) => {
+      if (err) {
+        throw new Error(`Failed to save image: ${err.message}`);
+      }
+      console.log('Image saved successfully to', savePath);
+    });
+  } catch (error) {
+    // Log the error to the console and notify the renderer process
+    console.error('Error processing or saving image:', error);
+    event.reply('save-image-error', error.message);
+  }
 });
