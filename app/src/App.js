@@ -5,11 +5,12 @@ import About from './pages/About';
 import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import TodoForm from './pages/forms/AddTask';
 import ImageUploader from './pages/image_upload/ImageUploader';
+import LoginForm from './pages/auth/LoginForm';
 function App() {
   return (
     <Router>
       <div>
-        <nav>
+        {/* <nav>
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -24,11 +25,11 @@ function App() {
               <Link to="/imageUpload">Add Image</Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
 
         {/* Define routes here */}
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<LoginForm />} />
           <Route path="/about" element={<About />} />
           <Route path="/addTask" element={<TodoForm />} />
           <Route path="/imageUpload" element={<ImageUploader />} />
